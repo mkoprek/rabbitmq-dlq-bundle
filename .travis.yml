@@ -15,12 +15,13 @@ install:
 
 jobs:
   include:
-    - stage: "Standards"
-      name: "php cs"
+    - stage: "Code Standards"
+      name: "PHP CS"
       script: vendor/bin/phpcs -s
     - script: php -dmemory_limit=-1 vendor/bin/phpstan analyse --level=max src/
-      name: "php stan"
-    - stage: "php unit"
+      name: "PHPStan"
+    - stage: "Tests"
+      name: "PHPUnit"
       script: vendor/bin/phpunit --coverage-text --colors=never --log-junit var/unit.xml
 
 after_success:

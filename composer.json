@@ -1,0 +1,36 @@
+{
+    "name": "mkoprek/rabbitmq-dlq-bundle",
+    "type": "symfony-bundle",
+    "authors": [
+        {
+            "name": "Maciej Koprek",
+            "email": "mkoprek@gmail.com"
+        }
+    ],
+    "license": "MIT",
+    "require": {
+        "php": ">=8.0",
+        "php-amqplib/rabbitmq-bundle": "^2.8",
+        "symfony/config": "*",
+        "symfony/dependency-injection": "*",
+        "symfony/http-kernel": "*"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^0.12",
+        "phpunit/phpunit": "^9.5",
+        "slevomat/coding-standard": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "MKoprek\\RabbitmqDlqBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\MKoprek\\RabbitmqDlqBundle\\": "tests/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}

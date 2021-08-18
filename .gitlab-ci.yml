@@ -1,0 +1,42 @@
+image: docker:stable
+
+variables:
+  CI_DEBUG_TRACE: 'false'
+
+stages:
+  - prepare
+  - standards
+  - tests
+
+prepare:composer:
+  image: gitlab.dev-sv.com:5050/dockers/fundrbird3/php8-fpm:latest
+  stage: prepare
+  script:
+    - composer install
+  artifacts:
+    expire_in: 30min
+    paths:
+      - var/
+      - vendor/
+
+standards:phpcs:
+  image: gitlab.dev-sv.com:5050/dockers/fundrbird3/php8-fpm:latest
+  stage: standards
+  script:
+    - vendor/bin/phpcs -s
+
+standards:phpstan:
+  image: gitlab.dev-sv.com:5050/dockers/fundrbird3/php8-fpm:latest
+  stage: standards
+  script:
+    - php -dmemory_limit=-1 vendor/bin/phpstan analyse --level=max src/
+
+tests:units:
+  image: gitlab.dev-sv.com:5050/dockers/fundrbird3/php8-fpm:latest-xdebug
+  stage: tests
+  script:
+    - vendor/bin/phpunit --coverage-text --colors=never --log-junit var/unit.xml
+  artifacts:
+    expire_in: 3 days
+    reports:
+      junit: var/unit.xml

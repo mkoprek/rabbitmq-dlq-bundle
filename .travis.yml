@@ -13,9 +13,15 @@ env:
 install:
   - composer install
 
-script:
-  - vendor/bin/phpstan analyse --level=max src/
-  - vendor/bin/phpunit --coverage-clover coverage.xml
+jobs:
+  include:
+    - stage: "Standards"
+      name: "php cs"
+      script: vendor/bin/phpcs -s
+    - script: php -dmemory_limit=-1 vendor/bin/phpstan analyse --level=max src/
+      name: "php stan"
+    - stage: "php unit"
+      script: vendor/bin/phpunit --coverage-text --colors=never --log-junit var/unit.xml
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)

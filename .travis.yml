@@ -1,0 +1,21 @@
+---
+language: php
+
+sudo: required
+
+php:
+  - 8.0
+
+env:
+  global:
+    - XDEBUG_MODE=coverage
+
+install:
+  - composer install
+
+script:
+  - vendor/bin/phpstan analyse --level=max src/
+  - vendor/bin/phpunit --coverage-clover coverage.xml
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)

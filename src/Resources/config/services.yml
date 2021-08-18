@@ -1,0 +1,9 @@
+services:
+  _defaults:
+    autowire: true
+
+  MKoprek\RabbitmqDlqBundle\Producer\MessageProducerInterface: '@MKoprek\RabbitmqDlqBundle\Producer\MessageProducer'
+
+  MKoprek\RabbitmqDlqBundle\Producer\MessageProducer:
+    arguments:
+      $producer: '@old_sound_rabbit_mq.default_producer'

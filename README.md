@@ -1,6 +1,7 @@
 # RabbitMQ DLQ Bundle
 
 [![Build Status](https://app.travis-ci.com/mkoprek/rabbitmq-dlq-bundle.svg?branch=main)](https://app.travis-ci.com/mkoprek/rabbitmq-dlq-bundle)
+[![codecov](https://codecov.io/gh/mkoprek/rabbitmq-dlq-bundle/branch/main/graph/badge.svg?token=LMQPX3EPHX)](https://codecov.io/gh/mkoprek/rabbitmq-dlq-bundle)
 
 ## Configuration
 This bundle is extension to [RabbitMqBundle](https://github.com/php-amqplib/RabbitMqBundle), it will automatically add DLQ queues to existing `multiple_consumer` in `old_sound_rabbit_mq.yaml`

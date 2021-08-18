@@ -22,7 +22,6 @@ jobs:
       name: "PHPStan"
     - stage: "Tests"
       name: "PHPUnit"
-      script: vendor/bin/phpunit --coverage-text --colors=never --log-junit var/unit.xml
-
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
+      script:
+        - vendor/bin/phpunit --coverage-text --colors=never --log-junit var/unit.xml
+        - bash <(curl -s https://codecov.io/bash)
